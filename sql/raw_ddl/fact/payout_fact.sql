@@ -1,0 +1,21 @@
+CREATE TABLE `payout_fact` (
+  `date_fk` int(11) DEFAULT NULL,
+  `flashnotes_date_fk` int(11) DEFAULT NULL,
+  `user_fk` int(11) DEFAULT NULL,
+  `payout_method_fk` int(11) DEFAULT NULL,
+  `disability_program_fk` int(11) DEFAULT NULL,
+  `payout_amount` decimal(10,2) DEFAULT NULL,
+  `sales_payout_amount` decimal(10,2) DEFAULT NULL,
+  `non_sales_payout_amount` decimal(10,2) DEFAULT NULL,
+  `payout_datetime` datetime DEFAULT NULL,
+  KEY `payout_date_idx` (`date_fk`),
+  KEY `payout_flashnotes_date_idx` (`flashnotes_date_fk`),
+  KEY `payout_user_idx` (`user_fk`),
+  KEY `payout_payout_method_idx` (`payout_method_fk`),
+  KEY `payout_disability_program_idx` (`disability_program_fk`),
+  CONSTRAINT `payout_date` FOREIGN KEY (`date_fk`) REFERENCES `date_dim` (`date_key`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `payout_disability_program` FOREIGN KEY (`disability_program_fk`) REFERENCES `disability_program_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `payout_flashnotes_date` FOREIGN KEY (`flashnotes_date_fk`) REFERENCES `date_dim` (`date_key`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `payout_payout_method` FOREIGN KEY (`payout_method_fk`) REFERENCES `payout_method_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `payout_user` FOREIGN KEY (`user_fk`) REFERENCES `user_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

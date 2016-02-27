@@ -1,0 +1,23 @@
+CREATE TABLE `product_review_fact` (
+  `date_fk` int(11) DEFAULT NULL,
+  `flashnotes_date_fk` int(11) DEFAULT NULL,
+  `product_fk` int(11) DEFAULT NULL,
+  `seller_fk` int(11) DEFAULT NULL,
+  `buyer_fk` int(11) DEFAULT NULL,
+  `site_fk` int(11) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  `comments` varchar(45) DEFAULT NULL,
+  `review_datetime` datetime DEFAULT NULL,
+  KEY `product_review_date_idx` (`date_fk`),
+  KEY `product_review_flashnotes_date_idx` (`flashnotes_date_fk`),
+  KEY `product_review_product_idx` (`product_fk`),
+  KEY `product_review_seller_idx` (`seller_fk`),
+  KEY `product_review_buyer_idx` (`buyer_fk`),
+  KEY `product_review_site_idx` (`site_fk`),
+  CONSTRAINT `product_review_buyer` FOREIGN KEY (`buyer_fk`) REFERENCES `user_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `product_review_date` FOREIGN KEY (`date_fk`) REFERENCES `date_dim` (`date_key`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `product_review_flashnotes_date` FOREIGN KEY (`flashnotes_date_fk`) REFERENCES `date_dim` (`date_key`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `product_review_product` FOREIGN KEY (`product_fk`) REFERENCES `product_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `product_review_seller` FOREIGN KEY (`seller_fk`) REFERENCES `user_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `product_review_site` FOREIGN KEY (`site_fk`) REFERENCES `site_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
