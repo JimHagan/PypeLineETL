@@ -1,6 +1,6 @@
 <h2>PypeLineETL</h2>
 
-<h3> Introduction </h3>
+<h3>Introduction </h3>
 
 This repo contains the code populating the Flashnotes Data Warehouse.  This system is comprised of lightweight ETL process management code that uses the opensource pygrametl package for some of the core dimensional modeling infrastructure.  Otherwise the codebase is a relatively pure pythonic ETL framework.  A few key design considerations
 
@@ -17,17 +17,17 @@ Some general references on dimensional modeling and ETL management
 [The Data Warehouse Toolkit (book)](http://www.amazon.com/The-Data-Warehouse-Toolkit-Dimensional/dp/0471200247)
 
 
-<h3> System  Prerequisites </h3>
+<h3>System  Prerequisites</h3>
 
 The repo [deploy](./deploy) subfolder contains two files [packages.txt](./deploy/packages.txt) and [requirements.txt](./deploy/requirements.txt)
 which list the system package (obtained via brew or apt-get) and pip install packages respectively.
 
 
-<h3> Basic ETL Workflow </h3>
+<h3>Basic ETL Workflow</h3>
 
 ![](http://www.gliffy.com/go/publish/image/7772209/M.png)
 
-<h3> Overall System Organization </h3>
+<h3>Overall System Organization</h3>
 
 Pypline is currently designed for maximum configuration flexibility.  There are
 really six files with which to be familiar in order to properly configure and deploy the system.
@@ -40,7 +40,7 @@ really six files with which to be familiar in order to properly configure and de
 * tasks.py - asynchronous celery task definitions.
 
 
-<h3> Synchronous Commandline Execution (using run.py) </h3>
+<h3>Synchronous Commandline Execution(using run.py) </h3>
 
 For bootstrapping, test, or demonstration purposes it may be useful to simple run one or more etls from a command line.  Although in production a parallelized task management model is more suitable.  If you simply type `run.py` from the command line from within the main project folder Pypeline will execute any and all configured ETLs.  You can edit config.py to turn on and off any ETLs you don't wish to run.  In addition you can run `tests.py` which will validate that the source connections and queries are working for any configured ETLs.
 
@@ -66,11 +66,11 @@ Options:
 ```
 NOTE: Only --test_dimensions_source defaults to True, so simply invoking `run.py` will run the dimension source tests.  This can be a good way to do basic environment validation.
 
-<h3> Asynchronous Execution (using Celery) </h3>
+<h3>Asynchronous Execution (using Celery)</h3>
 
 The asynchronous task management is handled through Celery.  In tasks.py there are currently two celery tasks functions.  One is a lower level function which can execute a single ETL and the other is a higher level function which can run all configured ETLs as a group.  Furthermore the config.py ETL definitions can be used to turn an ETL on or off
 
-<h5> System Prerequistes </h5>
+<h5>System Prerequistes</h5>
 
 As mentioned previously, it is necessary to have celery and redis configured to run the
 ETL tasks in tasks.py.  A simple development setup can be run with the following invocations.  If you are running an AWS machine you may need to invoke these using sudo.
@@ -81,7 +81,7 @@ ETL tasks in tasks.py.  A simple development setup can be run with the following
 ```
 
 
-<h5> Task Running a Single ETL </h5> 
+<h5>Task Running a Single ETL</h5> 
 
 ```
 @celery.task
@@ -121,7 +121,7 @@ mysql> select school_id, name, state from school_dim limit 3;
 
 ```
 
-<h5> Task Running a configured set of ETLs </h5> 
+<h5>Task Running a configured set of ETLs</h5> 
 
 ```
 @celery.task
