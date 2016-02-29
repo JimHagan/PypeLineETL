@@ -29,7 +29,7 @@ which list the system package (obtained via brew or apt-get) and pip install pac
 
 <h3>Overall System Organization</h3>
 
-Pypline is currently designed for maximum configuration flexibility.  There are
+PypeLineETL is currently designed for maximum configuration flexibility.  There are
 really six files with which to be familiar in order to properly configure and deploy the system.
 
 * config.py - describes which dimensions and facts are known to the system
