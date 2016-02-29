@@ -105,7 +105,7 @@ In [4]: task.status
 Out[4]: 'SUCCESS'
 
 In [5]: task.result
-Out[5]: ('dimension', 'school', 3)
+Out[5]: ('dimension', 'school', 1687)
 ```
 
 Check the content of the school_dim Data Warehouse Table
