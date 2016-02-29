@@ -2,7 +2,7 @@
 
 <h3>Introduction </h3>
 
-This repo contains the code populating the Flashnotes Data Warehouse.  This system is comprised of lightweight ETL process management code that uses the opensource pygrametl package for some of the core dimensional modeling infrastructure.  Otherwise the codebase is a relatively pure pythonic ETL framework.  A few key design considerations
+This repository contains the code for populating the Flashnotes Data Warehouse.  This system is comprised of lightweight ETL process management code that uses the open source *pygrametl* package for some of the core dimensional modeling infrastructure.  Otherwise the codebase is a relatively pure pythonic ETL framework.  A few key design considerations
 
 * Celery offers us a powerful means of executing ETLs asynchronously, but simple synchronous execution options are available from run.py
 
@@ -39,14 +39,16 @@ really six files with which to be familiar in order to properly configure and de
 * creates.py - low level sql definitions for data warehouse tables
 * tasks.py - asynchronous celery task definitions.
 
+The additional file *run.py* is really meant for experimentation and testing.
+
 
 <h3>Synchronous Commandline Execution(using run.py) </h3>
 
-For bootstrapping, test, or demonstration purposes it may be useful to simple run one or more etls from a command line.  Although in production a parallelized task management model is more suitable.  If you simply type `run.py` from the command line from within the main project folder Pypeline will execute any and all configured ETLs.  You can edit config.py to turn on and off any ETLs you don't wish to run.  In addition you can run `tests.py` which will validate that the source connections and queries are working for any configured ETLs.
+For bootstrapping, test, or demonstration purposes it may be useful to simple run one or more ETLs from a command line.  Although in production a parallelized task management model is more suitable.  If you simply type `run.py` from the command line from within the main project folder Pypeline will execute any and all configured ETLs.  You can edit config.py to turn on and off any ETLs you don't wish to run.  In addition you can run `tests.py` which will validate that the source connections and queries are working for any configured ETLs.
 
 <h5>Using run.py</h5>
 
-This simple command line tool supports very basic arguments.  The organization of Pypeline encourages the user to use the various configuration files to govern which ETLs get run and what the various data sources are for each.  So in run.py there ar not complicated data connection parameters.  In addition there is no way to specify specific ETLs.
+This simple command line tool supports very basic arguments.  The organization of PypeLine encourages the user to use the various configuration files to govern which ETLs get run and what the various data sources are for each.  So in run.py there ar not complicated data connection parameters.  In addition there is no way to specify specific ETLs.
 
 *Usage*
 
@@ -103,7 +105,7 @@ In [4]: task.status
 Out[4]: 'SUCCESS'
 
 In [5]: task.result
-Out[5]: ('dimension', 'user', 279)
+Out[5]: ('dimension', 'school', 3)
 ```
 
 Check the content of the school_dim Data Warehouse Table
